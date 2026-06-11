@@ -42,12 +42,6 @@ background:#1f2937;
 color:#9ca3af;
 }
 
-.status.online{
-color:#22c55e;
-border:1px solid #22c55e;
-}
-
-/* SIDEBAR */
 .sidebar{
 position:fixed;
 top:60px;
@@ -78,7 +72,6 @@ background:#1f2937;
 color:#facc15;
 }
 
-/* MAIN */
 .main{
 margin-top:80px;
 padding:15px;
@@ -107,19 +100,35 @@ color:#94a3b8;
 font-size:13px;
 margin-top:5px;
 }
+
+.section{
+margin-top:25px;
+color:#facc15;
+font-size:18px;
+}
+button{
+margin-top:8px;
+padding:6px 10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+background:#facc15;
+font-weight:bold;
+}
+button:hover{opacity:0.8;}
 </style>
 
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- TOP -->
 <div class="topbar">
 
 <div class="menu-btn" onclick="toggle()">☰</div>
 
 <div style="font-weight:bold;color:#facc15;">
-DASHBOARD
+JARVES DASHBOARD
 </div>
 
 <div class="status" id="status">● Checking...</div>
@@ -135,6 +144,7 @@ DASHBOARD
 <a href="#">👥 Groups</a>
 <a href="#">💬 Messages</a>
 <a href="#">🎫 Tickets</a>
+<a href="#">📢 Broadcast</a>
 <a href="#">🛡 Security</a>
 
 </div>
@@ -142,55 +152,108 @@ DASHBOARD
 <!-- MAIN -->
 <div class="main">
 
-<h2 style="color:#facc15;">Main Overview</h2>
+<h2 style="color:#facc15;">Overview</h2>
 
 <div class="cards">
 
 <div class="card">
-<h3>Messages</h3>
-<div class="small">0 today</div>
+<h3 id="msg">0</h3>
+<div class="small">Messages Today</div>
 </div>
 
 <div class="card">
-<h3>Groups</h3>
-<div class="small">0 active</div>
+<h3 id="grp">0</h3>
+<div class="small">Active Groups</div>
 </div>
 
 <div class="card">
-<h3>Users</h3>
-<div class="small">0 online</div>
+<h3 id="usr">0</h3>
+<div class="small">Online Users</div>
 </div>
 
 <div class="card">
-<h3>System</h3>
-<div class="small">Running</div>
+<h3>Running</h3>
+<div class="small">System Status</div>
 </div>
 
+</div>
+
+<div class="section">Groups Control</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Dev Group</h3>
+<div class="small">Messages: 120</div>
+<button>Send</button>
+<button>Mute</button>
+<button>Stop</button>
+</div>
+
+<div class="card">
+<h3>Friends Group</h3>
+<div class="small">Messages: 45</div>
+<button>Send</button>
+<button>Mute</button>
+<button>Stop</button>
+</div>
+
+</div>
+
+<div class="section">Tickets</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Ahmed</h3>
+<div class="small">Bot not responding</div>
+<button>Open</button>
+</div>
+
+<div class="card">
+<h3>Ali</h3>
+<div class="small">Spam report</div>
+<button>Close</button>
+</div>
+
+</div>
+
+<div class="section">Broadcast</div>
+
+<div class="card">
+<div class="small">Send message to all groups</div>
+<button>Send Broadcast</button>
 </div>
 
 </div>
 
 <script>
+
 function toggle(){
 document.getElementById("sidebar").classList.toggle("open");
 }
 
-/* CONNECT TO BACKEND */
-fetch("http://localhost:3000/status")
-.then(res => res.json())
-.then(data => {
-if(data.status === "online"){
+async function load(){
+try{
+const res = await fetch("http://localhost:3000/status");
+const data = await res.json();
+
 document.getElementById("status").innerHTML = "● Connected";
 document.getElementById("status").style.color = "#22c55e";
-}else{
-document.getElementById("status").innerHTML = "● Offline";
-document.getElementById("status").style.color = "red";
-}
-})
-.catch(()=>{
+
+document.getElementById("msg").innerText = data.messages;
+document.getElementById("grp").innerText = data.groups;
+document.getElementById("usr").innerText = data.users;
+
+}catch(e){
 document.getElementById("status").innerHTML = "● Disconnected";
 document.getElementById("status").style.color = "red";
-});
+}
+}
+
+load();
+setInterval(load, 3000);
+
 </script>
 
 </body>
