@@ -1,10 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background: radial-gradient(circle at top,#0b0f1a,#05070d,#000);
+color:#e5e7eb;
+overflow-x:hidden;
+}
+
+/* glow background */
+body::before{
+content:"";
+position:fixed;
+width:400px;
+height:400px;
+background:rgba(34,197,94,0.15);
+filter:blur(120px);
+top:-100px;
+left:-100px;
+}
+
+.sidebar{
+width:240px;
+height:100vh;
+position:fixed;
+background:linear-gradient(180deg,#0f172a,#05070d);
+border-right:1px solid #1f2937;
+padding:20px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#22c55e;
+text-shadow:0 0 10px #22c55e;
+margin-bottom:30px;
+}
+
+.menu p{
+margin:15px 0;
+color:#9ca3af;
+cursor:pointer;
+}
+.menu p:hover{
+color:#22c55e;
+text-shadow:0 0 8px #22c55e;
+}
+
+.main{
+margin-left:260px;
+padding:20px;
+}
+
+.title{
+font-size:28px;
+color:#22c55e;
+text-shadow:0 0 10px #22c55e;
+margin-bottom:20px;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.card{
+flex:1;
+min-width:200px;
+padding:20px;
+border-radius:15px;
+background:linear-gradient(145deg,#0f172a,#05070d);
+border:1px solid #1f2937;
+box-shadow:0 0 20px rgba(34,197,94,0.05);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 25px rgba(34,197,94,0.25);
+}
+
+.card h3{
+margin:0;
+color:#22c55e;
+}
+
+.card p{
+color:#9ca3af;
+margin-top:10px;
+}
+</style>
+
 </head>
+
 <body>
-  <h1 style="text-align:center;margin-top:50px;">OK - PAGE WORKING</h1>
+
+<div class="sidebar">
+<div class="logo">JARVES</div>
+<div class="menu">
+<p>🏠 Home</p>
+<p>💬 Messages</p>
+<p>👥 Groups</p>
+<p>👤 Users</p>
+<p>⚙️ Settings</p>
+</div>
+</div>
+
+<div class="main">
+<div class="title">DASHBOARD</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Messages</h3>
+<p>0 today</p>
+</div>
+
+<div class="card">
+<h3>Groups</h3>
+<p>0 total</p>
+</div>
+
+<div class="card">
+<h3>Users</h3>
+<p>0 active</p>
+</div>
+
+<div class="card">
+<h3>Uptime</h3>
+<p>0h 0m</p>
+</div>
+
+</div>
+
+</div>
+
 </body>
 </html>
