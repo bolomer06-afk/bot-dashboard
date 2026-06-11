@@ -110,19 +110,20 @@ margin-top:5px;
 </style>
 
 </head>
+
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
+
 <div class="menu-btn" onclick="toggle()">☰</div>
 
 <div style="font-weight:bold;color:#facc15;">
 DASHBOARD
 </div>
 
-<div class="status online">
-● Connected
-</div>
+<div class="status" id="status">● Checking...</div>
+
 </div>
 
 <!-- SIDEBAR -->
@@ -173,6 +174,23 @@ DASHBOARD
 function toggle(){
 document.getElementById("sidebar").classList.toggle("open");
 }
+
+/* CONNECT TO BACKEND */
+fetch("http://localhost:3000/status")
+.then(res => res.json())
+.then(data => {
+if(data.status === "online"){
+document.getElementById("status").innerHTML = "● Connected";
+document.getElementById("status").style.color = "#22c55e";
+}else{
+document.getElementById("status").innerHTML = "● Offline";
+document.getElementById("status").style.color = "red";
+}
+})
+.catch(()=>{
+document.getElementById("status").innerHTML = "● Disconnected";
+document.getElementById("status").style.color = "red";
+});
 </script>
 
 </body>
