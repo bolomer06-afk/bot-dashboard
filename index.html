@@ -3,142 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
+<title>Control Dashboard</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial;
-background: radial-gradient(circle at top,#0b0f1a,#05070d,#000);
+background:#0b1220;
 color:#e5e7eb;
-overflow-x:hidden;
 }
 
-/* glow background */
-body::before{
-content:"";
-position:fixed;
-width:400px;
-height:400px;
-background:rgba(34,197,94,0.15);
-filter:blur(120px);
-top:-100px;
-left:-100px;
-}
-
+/* sidebar */
 .sidebar{
-width:240px;
+width:270px;
 height:100vh;
 position:fixed;
-background:linear-gradient(180deg,#0f172a,#05070d);
-border-right:1px solid #1f2937;
+background:#0f172a;
 padding:20px;
+border-right:1px solid #1f2937;
 }
 
 .logo{
 font-size:22px;
 font-weight:bold;
-color:#22c55e;
-text-shadow:0 0 10px #22c55e;
-margin-bottom:30px;
+color:#facc15;
+margin-bottom:20px;
 }
 
-.menu p{
-margin:15px 0;
-color:#9ca3af;
-cursor:pointer;
-}
-.menu p:hover{
-color:#22c55e;
-text-shadow:0 0 8px #22c55e;
+.menu a{
+display:block;
+padding:10px;
+margin:6px 0;
+color:#cbd5e1;
+text-decoration:none;
+border-radius:8px;
+font-size:14px;
 }
 
+.menu a:hover{
+background:#1f2937;
+color:#facc15;
+}
+
+/* main */
 .main{
-margin-left:260px;
+margin-left:290px;
 padding:20px;
 }
 
 .title{
-font-size:28px;
-color:#22c55e;
-text-shadow:0 0 10px #22c55e;
+font-size:26px;
+color:#facc15;
 margin-bottom:20px;
 }
 
-.cards{
-display:flex;
-flex-wrap:wrap;
+/* grid */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:15px;
 }
 
 .card{
-flex:1;
-min-width:200px;
-padding:20px;
-border-radius:15px;
-background:linear-gradient(145deg,#0f172a,#05070d);
+background:#111827;
+padding:15px;
+border-radius:12px;
 border:1px solid #1f2937;
-box-shadow:0 0 20px rgba(34,197,94,0.05);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 25px rgba(34,197,94,0.25);
 }
 
 .card h3{
 margin:0;
-color:#22c55e;
+color:#facc15;
 }
 
-.card p{
-color:#9ca3af;
-margin-top:10px;
+.small{
+color:#94a3b8;
+font-size:13px;
+margin-top:8px;
+}
+
+/* table */
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+}
+
+th,td{
+border-bottom:1px solid #1f2937;
+padding:10px;
+text-align:left;
+font-size:14px;
+}
+
+button{
+background:#facc15;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+opacity:0.8;
 }
 </style>
 
 </head>
-
 <body>
 
 <div class="sidebar">
-<div class="logo">JARVES</div>
+<div class="logo">JARVES PANEL</div>
+
 <div class="menu">
-<p>🏠 Home</p>
-<p>💬 Messages</p>
-<p>👥 Groups</p>
-<p>👤 Users</p>
-<p>⚙️ Settings</p>
+<a href="#">📊 Overview</a>
+<a href="#">🤖 AI Control</a>
+<a href="#">💬 Messages</a>
+<a href="#">👥 Groups</a>
+<a href="#">🎫 Tickets</a>
+<a href="#">📢 Broadcast</a>
+<a href="#">🛡 Security</a>
 </div>
 </div>
 
 <div class="main">
-<div class="title">DASHBOARD</div>
 
-<div class="cards">
+<div class="title">Dashboard Control Center</div>
 
-<div class="card">
-<h3>Messages</h3>
-<p>0 today</p>
-</div>
+<div class="grid">
 
 <div class="card">
-<h3>Groups</h3>
-<p>0 total</p>
+<h3>Total Messages</h3>
+<div class="small">All groups activity</div>
 </div>
 
 <div class="card">
-<h3>Users</h3>
-<p>0 active</p>
+<h3>Active Groups</h3>
+<div class="small">Connected WhatsApp groups</div>
 </div>
 
 <div class="card">
-<h3>Uptime</h3>
-<p>0h 0m</p>
+<h3>Tickets Open</h3>
+<div class="small">Support system</div>
+</div>
+
+<div class="card">
+<h3>Broadcast Queue</h3>
+<div class="small">Pending messages</div>
 </div>
 
 </div>
+
+<!-- GROUPS TABLE -->
+<h2 style="color:#facc15;margin-top:30px;">Groups Control</h2>
+
+<table>
+<tr>
+<th>Group</th>
+<th>Messages</th>
+<th>Actions</th>
+</tr>
+
+<tr>
+<td>Dev Group</td>
+<td>120</td>
+<td>
+<button>Send</button>
+<button>Mute</button>
+<button>Stop</button>
+</td>
+</tr>
+
+<tr>
+<td>Friends</td>
+<td>45</td>
+<td>
+<button>Send</button>
+<button>Mute</button>
+<button>Stop</button>
+</td>
+</tr>
+
+</table>
+
+<!-- TICKETS -->
+<h2 style="color:#facc15;margin-top:30px;">Tickets</h2>
+
+<table>
+<tr>
+<th>User</th>
+<th>Issue</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Ahmed</td>
+<td>Bot not responding</td>
+<td>Open</td>
+</tr>
+
+<tr>
+<td>Ali</td>
+<td>Spam report</td>
+<td>Closed</td>
+</tr>
+
+</table>
 
 </div>
 
